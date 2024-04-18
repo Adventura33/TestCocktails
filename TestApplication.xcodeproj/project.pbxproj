@@ -13,6 +13,17 @@
 		FF216E802BD189AC0043FB07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF216E7E2BD189AC0043FB07 /* Main.storyboard */; };
 		FF216E822BD189AE0043FB07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF216E812BD189AE0043FB07 /* Assets.xcassets */; };
 		FF216E852BD189AE0043FB07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF216E832BD189AE0043FB07 /* LaunchScreen.storyboard */; };
+		FF216EA82BD18B460043FB07 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EA72BD18B460043FB07 /* RxBlocking */; };
+		FF216EAA2BD18B460043FB07 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EA92BD18B460043FB07 /* RxBlocking-Dynamic */; };
+		FF216EAC2BD18B460043FB07 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EAB2BD18B460043FB07 /* RxCocoa */; };
+		FF216EAE2BD18B460043FB07 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EAD2BD18B460043FB07 /* RxCocoa-Dynamic */; };
+		FF216EB02BD18B460043FB07 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EAF2BD18B460043FB07 /* RxRelay */; };
+		FF216EB32BD18B530043FB07 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EB22BD18B530043FB07 /* SnapKit */; };
+		FF216EB52BD18B530043FB07 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EB42BD18B530043FB07 /* SnapKit-Dynamic */; };
+		FF216EB82BD18B7F0043FB07 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EB72BD18B7F0043FB07 /* Swinject */; };
+		FF216EBA2BD18B7F0043FB07 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EB92BD18B7F0043FB07 /* Swinject-Dynamic */; };
+		FF216EBD2BD18B8C0043FB07 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EBC2BD18B8C0043FB07 /* Alamofire */; };
+		FF216EBF2BD18B8C0043FB07 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EBE2BD18B8C0043FB07 /* AlamofireDynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +42,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF216EBF2BD18B8C0043FB07 /* AlamofireDynamic in Frameworks */,
+				FF216EB02BD18B460043FB07 /* RxRelay in Frameworks */,
+				FF216EAE2BD18B460043FB07 /* RxCocoa-Dynamic in Frameworks */,
+				FF216EAC2BD18B460043FB07 /* RxCocoa in Frameworks */,
+				FF216EB32BD18B530043FB07 /* SnapKit in Frameworks */,
+				FF216EA82BD18B460043FB07 /* RxBlocking in Frameworks */,
+				FF216EBD2BD18B8C0043FB07 /* Alamofire in Frameworks */,
+				FF216EB52BD18B530043FB07 /* SnapKit-Dynamic in Frameworks */,
+				FF216EBA2BD18B7F0043FB07 /* Swinject-Dynamic in Frameworks */,
+				FF216EAA2BD18B460043FB07 /* RxBlocking-Dynamic in Frameworks */,
+				FF216EB82BD18B7F0043FB07 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +105,19 @@
 			dependencies = (
 			);
 			name = TestApplication;
+			packageProductDependencies = (
+				FF216EA72BD18B460043FB07 /* RxBlocking */,
+				FF216EA92BD18B460043FB07 /* RxBlocking-Dynamic */,
+				FF216EAB2BD18B460043FB07 /* RxCocoa */,
+				FF216EAD2BD18B460043FB07 /* RxCocoa-Dynamic */,
+				FF216EAF2BD18B460043FB07 /* RxRelay */,
+				FF216EB22BD18B530043FB07 /* SnapKit */,
+				FF216EB42BD18B530043FB07 /* SnapKit-Dynamic */,
+				FF216EB72BD18B7F0043FB07 /* Swinject */,
+				FF216EB92BD18B7F0043FB07 /* Swinject-Dynamic */,
+				FF216EBC2BD18B8C0043FB07 /* Alamofire */,
+				FF216EBE2BD18B8C0043FB07 /* AlamofireDynamic */,
+			);
 			productName = TestApplication;
 			productReference = FF216E752BD189AC0043FB07 /* TestApplication.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +146,12 @@
 				Base,
 			);
 			mainGroup = FF216E6C2BD189AC0043FB07;
+			packageReferences = (
+				FF216EA62BD18B460043FB07 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				FF216EB12BD18B530043FB07 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FF216EB62BD18B7F0043FB07 /* XCRemoteSwiftPackageReference "Swinject" */,
+				FF216EBB2BD18B8C0043FB07 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = FF216E762BD189AC0043FB07 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -361,6 +402,99 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF216EA62BD18B460043FB07 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+		FF216EB12BD18B530043FB07 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		FF216EB62BD18B7F0043FB07 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.6;
+			};
+		};
+		FF216EBB2BD18B8C0043FB07 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF216EA72BD18B460043FB07 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EA62BD18B460043FB07 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		FF216EA92BD18B460043FB07 /* RxBlocking-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EA62BD18B460043FB07 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxBlocking-Dynamic";
+		};
+		FF216EAB2BD18B460043FB07 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EA62BD18B460043FB07 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		FF216EAD2BD18B460043FB07 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EA62BD18B460043FB07 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		FF216EAF2BD18B460043FB07 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EA62BD18B460043FB07 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		FF216EB22BD18B530043FB07 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EB12BD18B530043FB07 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		FF216EB42BD18B530043FB07 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EB12BD18B530043FB07 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+		FF216EB72BD18B7F0043FB07 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EB62BD18B7F0043FB07 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		FF216EB92BD18B7F0043FB07 /* Swinject-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EB62BD18B7F0043FB07 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = "Swinject-Dynamic";
+		};
+		FF216EBC2BD18B8C0043FB07 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EBB2BD18B8C0043FB07 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		FF216EBE2BD18B8C0043FB07 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF216EBB2BD18B8C0043FB07 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF216E6D2BD189AC0043FB07 /* Project object */;
 }
