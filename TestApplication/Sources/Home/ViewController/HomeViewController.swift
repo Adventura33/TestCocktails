@@ -27,6 +27,11 @@ class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
     private let segmentedControl = SSSegmentedControl()
     private let searchBar = SearchBarView()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        $0.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return $0
+    }(UIRefreshControl())
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -110,11 +115,24 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 }
 
+// MARK: - Actions
+
+extension HomeViewController {
+    @objc func refreshData() {
+        cocktailsList.shuffle()
+        collectionView.reloadData()
+        
+        refreshControl.endRefreshing()
+    }
+}
+
 extension HomeViewController {
     private func setupViews() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Cocktails"
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.regular(fontSize: 30), NSAttributedString.Key.foregroundColor: UIColor.appColor(.titleColor)]
+        
+        collectionView.refreshControl = refreshControl
 
         [searchBar, segmentedControl, collectionView].forEach {
             view.addSubview($0)
