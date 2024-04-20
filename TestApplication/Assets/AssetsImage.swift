@@ -12,6 +12,20 @@ enum AssetsImage {
     enum Common: String {
         case search = "search"
         case close = "close"
+        case back = "back"
+    }
+    enum CocktailsType: String {
+        case beer = "beer"
+        case cocktail = "cocktail"
+        case cocoa = "cocoa"
+        case coffee = "coffee"
+        case drinkOnTheParty = "drinkOnTheParty"
+        case liquor = "liquor"
+        case other = "other"
+        case regularDrink = "regularDrink"
+        case shot = "shot"
+        case smoothieShake = "smoothieShake"
+        case softDrink = "softDrink"
     }
 }
 

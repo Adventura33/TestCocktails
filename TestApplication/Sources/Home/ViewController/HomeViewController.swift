@@ -11,14 +11,14 @@ import RxSwift
 import RxCocoa
 import Swinject
 import SnapKit
-import Lottie
 
 class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
     
     //MARK: - Private properties
     
     let viewModel: HomeViewModel
-    private var isAlcoholic = BehaviorRelay<Bool>(value: true)
+    private var isAlcoholic = BehaviorRelay<Bool?>(value: false)
+    private var drinksDetail = BehaviorRelay<String?>(value: nil)
     private var cocktailsList: [Drink] = []
     
     //MARK: - UI Elements
@@ -61,8 +61,9 @@ class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
 extension HomeViewController: IViewModelOwner {
     
     func createInput() {
-        let filterTrigger = isAlcoholic.asSignal(onErrorJustReturn: true)
-        let input = HomeViewModel.Input(bag: bag, isAlhocolic: filterTrigger)
+        let filterTrigger = isAlcoholic.asSignal(onErrorJustReturn: false)
+        let drinksDetail = drinksDetail.asSignal(onErrorJustReturn: nil)
+        let input = HomeViewModel.Input(bag: bag, isAlhocolic: filterTrigger, drinksDetail: drinksDetail)
         viewModel.transform(input: input, outputHandler: subscribeToOutput(_:))
     }
     
@@ -88,7 +89,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! GridCell
         loadImageFromURL(urlString: self.cocktailsList[indexPath.row].strDrinkThumb) { image in
             if let image = image {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     cell.configure(title: self.cocktailsList[indexPath.row].strDrink, image: image)
                 }
             }
@@ -97,32 +99,16 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    }
-}
-
-// MARK: - Methods
-
-extension HomeViewController {
-    
-    func loadImageFromURL(urlString: String, completion: @escaping (UIImage?) -> Void) {
-        if let url = URL(string: urlString) {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    let image = UIImage(data: data)
-                    completion(image)
-                } else {
-                    completion(nil)
-                }
-            }
-            task.resume()
-        } else {
-            completion(nil)
-        }
+        drinksDetail.accept(self.cocktailsList[indexPath.row].idDrink)
     }
 }
 
 extension HomeViewController {
     private func setupViews() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Cocktails"
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.regular(fontSize: 30), NSAttributedString.Key.foregroundColor: UIColor.appColor(.titleColor)]
+
         [searchBar, segmentedControl, collectionView].forEach {
             view.addSubview($0)
         }

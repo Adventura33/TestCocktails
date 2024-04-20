@@ -26,7 +26,7 @@ class HomeViewModel {
     }
     
     func fetch() {
-        self.getCocktailList()
+        self.getCocktailList(isAlcoholic: false)
     }
 }
 
@@ -36,7 +36,8 @@ extension HomeViewModel: IViewModeling {
     
     struct Input {
         let bag: DisposeBag
-        let isAlhocolic: Signal<Bool>
+        let isAlhocolic: Signal<Bool?>
+        let drinksDetail: Signal<String?>
     }
     
     // MARK: - Output
@@ -51,6 +52,9 @@ extension HomeViewModel: IViewModeling {
         subscribeFilter(input.isAlhocolic)
             .disposed(by: input.bag)
         
+        subscribeDetail(input.drinksDetail)
+            .disposed(by: input.bag)
+        
         let isLoading = self.isLoading.asDriver(onErrorDriveWith: .empty())
         
         let cocktailsList = self.cocktailsList.asDriver(onErrorDriveWith: .empty())
@@ -61,13 +65,21 @@ extension HomeViewModel: IViewModeling {
 
 extension HomeViewModel {
     
-    func subscribeFilter(_ trigger: Signal<Bool>) -> Disposable {
+    func subscribeDetail(_ trigger: Signal<String?>) -> Disposable {
+        return trigger.emit(onNext: { [weak self] id in
+            guard let id = id else { return }
+            self?.routes.openDetail(id: id)
+        })
+    }
+    
+    func subscribeFilter(_ trigger: Signal<Bool?>) -> Disposable {
         return trigger.emit(onNext: { [weak self] filter in
+            guard let filter = filter else { return }
             self?.getCocktailList(isAlcoholic: filter)
         })
     }
     
-    func getCocktailList(isAlcoholic: Bool = false) {
+    func getCocktailList(isAlcoholic: Bool) {
         isLoading.accept(true)
         getCocktailListApi(isAlcoholic: isAlcoholic)
             .observe(on: MainScheduler.instance)
