@@ -8,10 +8,14 @@
 import Foundation
 import UIKit
 import RxSwift
+import CoreMotion
 
 class BaseController<CoordinatorType: ICoordinator>: UIViewController {
 
     let bag = DisposeBag()
+    let motionManager = CMMotionManager()
+    
+    var loaderView: MainLoaderView?
 
     var coordinator: CoordinatorType?
 
@@ -30,8 +34,39 @@ class BaseController<CoordinatorType: ICoordinator>: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.appColor(.background)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Cocktails"
+        
         performSetupIfNeeded()
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    func showLoader() {
+        if loaderView == nil {
+            loaderView = MainLoaderView()
+        }
+        
+        if let loaderView = loaderView, !view.subviews.contains(loaderView) {
+            view.addSubview(loaderView)
+            
+            loaderView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+        
+        self.loaderView?.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+    
+    func hideLoader() {
+        loaderView?.stopAnimating()
+        view.isUserInteractionEnabled = true
+        loaderView?.removeFromSuperview()
+        loaderView = nil
     }
 
     private func performSetupIfNeeded() {
@@ -39,5 +74,20 @@ class BaseController<CoordinatorType: ICoordinator>: UIViewController {
             return
         }
         setuper.performAutoSetup()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            toggleTheme()
+        }
+    }
+    
+    func toggleTheme() {
+        if #available(iOS 13.0, *) {
+            let currentTraitCollection = self.traitCollection
+            let userInterfaceStyle = currentTraitCollection.userInterfaceStyle
+            let newStyle: UIUserInterfaceStyle = userInterfaceStyle == .dark ? .light : .dark
+            self.overrideUserInterfaceStyle = newStyle
+        }
     }
 }
