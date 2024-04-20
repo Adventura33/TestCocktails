@@ -112,4 +112,16 @@ class BaseController<CoordinatorType: ICoordinator>: UIViewController {
             completion(nil)
         }
     }
+    
+    func showAlert(completion: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            let vc = AlertViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            vc.modalTransitionStyle = .crossDissolve
+            vc.didTapRetry = {
+                completion()
+            }
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
 }

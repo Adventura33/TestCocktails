@@ -57,6 +57,7 @@
 		FF8E998A2BD4220F00BC5CA4 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99892BD4220F00BC5CA4 /* UIFont+Extension.swift */; };
 		FF8E998C2BD42C3D00BC5CA4 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E998B2BD42C3D00BC5CA4 /* UILabel+Extension.swift */; };
 		FF8E998E2BD436A100BC5CA4 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */; };
+		FF8E99922BD4450C00BC5CA4 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99912BD4450C00BC5CA4 /* AlertViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		FF8E99892BD4220F00BC5CA4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		FF8E998B2BD42C3D00BC5CA4 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		FF8E99912BD4450C00BC5CA4 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 		FF2DAD6D2BD281F500E152EF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FF8E99902BD444FD00BC5CA4 /* Alert */,
 				FF2DAD6E2BD2820600E152EF /* SegmentedControl.swift */,
 				FF2DAD912BD3593E00E152EF /* MainLoaderView.swift */,
 			);
@@ -353,6 +356,14 @@
 				FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FF8E99902BD444FD00BC5CA4 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				FF8E99912BD4450C00BC5CA4 /* AlertViewController.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,6 +467,7 @@
 				FF216ECA2BD1938E0043FB07 /* ITransition.swift in Sources */,
 				FF2DAD722BD28BD300E152EF /* AssetsColor.swift in Sources */,
 				FF216EC82BD1936E0043FB07 /* Router.swift in Sources */,
+				FF8E99922BD4450C00BC5CA4 /* AlertViewController.swift in Sources */,
 				FF216ECE2BD1944B0043FB07 /* WindowNavigationTransition.swift in Sources */,
 				FF2DAD7D2BD2BBE800E152EF /* GridCell.swift in Sources */,
 				FF2DAD9A2BD3EAD100E152EF /* CocktailsDetailViewController.swift in Sources */,

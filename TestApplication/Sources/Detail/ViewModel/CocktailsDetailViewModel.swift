@@ -19,6 +19,7 @@ class CocktailsDetailViewModel {
     
     private let cocktailsDetail = BehaviorRelay<DrinksDetail?>(value: nil)
     private let isLoading = PublishRelay<Bool>()
+    private let showAlert = PublishRelay<Bool>()
     
     private let detailId: String
     
@@ -40,6 +41,7 @@ extension CocktailsDetailViewModel: IViewModeling {
     
     struct Input {
         let bag: DisposeBag
+        let isRetry: Signal<Bool?>
     }
     
     // MARK: - Output
@@ -47,19 +49,32 @@ extension CocktailsDetailViewModel: IViewModeling {
     struct Output {
         let isLoading: Driver<Bool>
         let cocktailsList: Driver<DrinksDetail?>
+        let showAlert: Driver<Bool>
     }
     
     func transform(input: Input, outputHandler: (Output) -> Void) {
+        
+        subscribeRetry(input.isRetry)
+            .disposed(by: input.bag)
         
         let isLoading = self.isLoading.asDriver(onErrorDriveWith: .empty())
         
         let cocktailsDetail = self.cocktailsDetail.asDriver(onErrorDriveWith: .empty())
         
-        outputHandler(.init(isLoading: isLoading, cocktailsList: cocktailsDetail))
+        let showAlert = self.showAlert.asDriver(onErrorDriveWith: .empty())
+        
+        outputHandler(.init(isLoading: isLoading, cocktailsList: cocktailsDetail, showAlert: showAlert))
     }
 }
 
 extension CocktailsDetailViewModel {
+    
+    func subscribeRetry(_ trigger: Signal<Bool?>) -> Disposable {
+        return trigger.emit(onNext: { [weak self] _ in
+            guard let id = self?.detailId else { return }
+            self?.getCocktailList(id: id)
+        })
+    }
     
     func getCocktailList(id: String) {
         isLoading.accept(true)
@@ -68,10 +83,9 @@ extension CocktailsDetailViewModel {
             .subscribe(onNext: { [weak self] item in
                 self?.cocktailsDetail.accept(item.drinks.first)
                 self?.isLoading.accept(false)
-                print(item)
             }, onError: { [weak self] error in
                 self?.isLoading.accept(false)
-                print(error)
+                self?.showAlert.accept(true)
             })
             .disposed(by: bag)
     }
