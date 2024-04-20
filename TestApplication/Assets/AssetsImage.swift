@@ -13,6 +13,7 @@ enum AssetsImage {
         case search = "search"
         case close = "close"
         case back = "back"
+        case error = "error"
     }
     enum CocktailsType: String {
         case beer = "beer"

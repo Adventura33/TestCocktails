@@ -20,6 +20,7 @@ class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
     private var isAlcoholic = BehaviorRelay<Bool?>(value: false)
     private var drinksDetail = BehaviorRelay<String?>(value: nil)
     private var cocktailsList: [Drink] = []
+    private var segmentIndex: Int = 0
     
     //MARK: - UI Elements
     
@@ -71,6 +72,12 @@ extension HomeViewController: IViewModelOwner {
         output.cocktailsList.drive { [weak self] list in
             self?.cocktailsList = list
             self?.collectionView.reloadData()
+        }.disposed(by: bag)
+        
+        output.showAlert.drive { [weak self] _ in
+            self?.showAlert(completion: {
+                self?.segmentIndex == 0 ? self?.isAlcoholic.accept(false) : self?.isAlcoholic.accept(true)
+            })
         }.disposed(by: bag)
         
         output.isLoading.drive { [weak self] isLoading in
@@ -146,6 +153,7 @@ extension HomeViewController {
         }
         
         segmentedControl.didTapSegment = { [weak self] index in
+            self?.segmentIndex = index
             index == 0 ? self?.isAlcoholic.accept(false) : self?.isAlcoholic.accept(true)
         }
     }

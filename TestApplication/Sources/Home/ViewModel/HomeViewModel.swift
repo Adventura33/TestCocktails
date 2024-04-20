@@ -18,6 +18,7 @@ class HomeViewModel {
     private let isAlcoholic = BehaviorRelay<Bool>(value: true)
     private let cocktailsList = BehaviorRelay<[Drink]>(value: [])
     private let isLoading = PublishRelay<Bool>()
+    private let showAlert = PublishRelay<Bool>()
     
     // MARK: - Init
     required init(container: Container) {
@@ -45,6 +46,7 @@ extension HomeViewModel: IViewModeling {
     struct Output {
         let isLoading: Driver<Bool>
         let cocktailsList: Driver<[Drink]>
+        let showAlert: Driver<Bool>
     }
     
     func transform(input: Input, outputHandler: (Output) -> Void) {
@@ -59,7 +61,9 @@ extension HomeViewModel: IViewModeling {
         
         let cocktailsList = self.cocktailsList.asDriver(onErrorDriveWith: .empty())
         
-        outputHandler(.init(isLoading: isLoading, cocktailsList: cocktailsList))
+        let showAlert = self.showAlert.asDriver(onErrorDriveWith: .empty())
+        
+        outputHandler(.init(isLoading: isLoading, cocktailsList: cocktailsList, showAlert: showAlert))
     }
 }
 
@@ -89,6 +93,7 @@ extension HomeViewModel {
                 print(list)
             }, onError: { [weak self] error in
                 self?.isLoading.accept(false)
+                self?.showAlert.accept(true)
             })
             .disposed(by: bag)
     }

@@ -17,6 +17,7 @@ class CocktailsDetailViewController: BaseController<CocktailsDetailCoordinator>,
     //MARK: - Private properties
     
     let viewModel: CocktailsDetailViewModel
+    private var isRetry = BehaviorRelay<Bool?>(value: false)
     
     //MARK: - UI Elements
     
@@ -106,7 +107,8 @@ class CocktailsDetailViewController: BaseController<CocktailsDetailCoordinator>,
 extension CocktailsDetailViewController: IViewModelOwner {
     
     func createInput() {
-        let input = CocktailsDetailViewModel.Input(bag: bag)
+        let retryTrigger = isRetry.asSignal(onErrorJustReturn: false)
+        let input = CocktailsDetailViewModel.Input(bag: bag, isRetry: retryTrigger)
         viewModel.transform(input: input, outputHandler: subscribeToOutput(_:))
     }
     
@@ -114,6 +116,12 @@ extension CocktailsDetailViewController: IViewModelOwner {
         output.cocktailsList.drive { [weak self] item in
             guard let item = item else { return }
             self?.configure(item: item)
+        }.disposed(by: bag)
+        
+        output.showAlert.drive { [weak self] _ in
+            self?.showAlert(completion: {
+                self?.isRetry.accept(true)
+            })
         }.disposed(by: bag)
         
         output.isLoading.drive { [weak self] isLoading in
