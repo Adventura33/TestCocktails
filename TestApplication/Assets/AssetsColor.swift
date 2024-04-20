@@ -16,6 +16,7 @@ enum AssetsColor: String {
     case background
     case titleColor
     case overlay
+    case third
 }
 
 extension UIColor {

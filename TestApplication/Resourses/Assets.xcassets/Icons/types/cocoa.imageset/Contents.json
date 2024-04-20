@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "cocoa.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

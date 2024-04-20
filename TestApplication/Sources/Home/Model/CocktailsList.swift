@@ -18,7 +18,11 @@ struct Drink: Codable {
     let idDrink: String
 }
 
-struct Drinks : Codable {
+struct DrinksDetailList: Codable {
+    let drinks: [DrinksDetail]
+}
+
+struct DrinksDetail : Codable {
     let idDrink : String?
     let strDrink : String?
     let strDrinkAlternate : String?

@@ -50,6 +50,13 @@
 		FF2DAD8D2BD3523600E152EF /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FF2DAD8C2BD3523600E152EF /* Lottie */; };
 		FF2DAD902BD3529C00E152EF /* cocktail_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = FF2DAD8F2BD3529C00E152EF /* cocktail_animation.json */; };
 		FF2DAD922BD3593E00E152EF /* MainLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD912BD3593E00E152EF /* MainLoaderView.swift */; };
+		FF2DAD9A2BD3EAD100E152EF /* CocktailsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD992BD3EAD100E152EF /* CocktailsDetailViewController.swift */; };
+		FF2DAD9C2BD3EAE000E152EF /* CocktailsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD9B2BD3EAE000E152EF /* CocktailsDetailViewModel.swift */; };
+		FF2DAD9E2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD9D2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift */; };
+		FF8E99872BD4214700BC5CA4 /* Alice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF8E99862BD4214700BC5CA4 /* Alice-Regular.ttf */; };
+		FF8E998A2BD4220F00BC5CA4 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99892BD4220F00BC5CA4 /* UIFont+Extension.swift */; };
+		FF8E998C2BD42C3D00BC5CA4 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E998B2BD42C3D00BC5CA4 /* UILabel+Extension.swift */; };
+		FF8E998E2BD436A100BC5CA4 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +93,13 @@
 		FF2DAD892BD3485300E152EF /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		FF2DAD8F2BD3529C00E152EF /* cocktail_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = cocktail_animation.json; path = ../../../../Downloads/cocktail_animation.json; sourceTree = "<group>"; };
 		FF2DAD912BD3593E00E152EF /* MainLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoaderView.swift; sourceTree = "<group>"; };
+		FF2DAD992BD3EAD100E152EF /* CocktailsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsDetailViewController.swift; sourceTree = "<group>"; };
+		FF2DAD9B2BD3EAE000E152EF /* CocktailsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsDetailViewModel.swift; sourceTree = "<group>"; };
+		FF2DAD9D2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsDetailCoordinator.swift; sourceTree = "<group>"; };
+		FF8E99862BD4214700BC5CA4 /* Alice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Alice-Regular.ttf"; path = "../../../Downloads/Alice/Alice-Regular.ttf"; sourceTree = "<group>"; };
+		FF8E99892BD4220F00BC5CA4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		FF8E998B2BD42C3D00BC5CA4 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +144,8 @@
 		FF216E772BD189AC0043FB07 /* TestApplication */ = {
 			isa = PBXGroup;
 			children = (
+				FF8E99882BD421FA00BC5CA4 /* Extensions */,
+				FF8E99852BD4212F00BC5CA4 /* Font */,
 				FF2DAD762BD2B01200E152EF /* Network */,
 				FF2DAD702BD28BC400E152EF /* Assets */,
 				FF2DAD6D2BD281F500E152EF /* Common */,
@@ -181,6 +197,7 @@
 		FF216ED32BD1969B0043FB07 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				FF2DAD962BD3EA8F00E152EF /* Detail */,
 				FF216ED42BD196B70043FB07 /* Home */,
 			);
 			path = Sources;
@@ -294,6 +311,50 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		FF2DAD962BD3EA8F00E152EF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				FF2DAD982BD3EA9E00E152EF /* ViewController */,
+				FF2DAD972BD3EA9800E152EF /* ViewModel */,
+				FF2DAD9D2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		FF2DAD972BD3EA9800E152EF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF2DAD9B2BD3EAE000E152EF /* CocktailsDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF2DAD982BD3EA9E00E152EF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF2DAD992BD3EAD100E152EF /* CocktailsDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FF8E99852BD4212F00BC5CA4 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				FF8E99862BD4214700BC5CA4 /* Alice-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		FF8E99882BD421FA00BC5CA4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FF8E99892BD4220F00BC5CA4 /* UIFont+Extension.swift */,
+				FF8E998B2BD42C3D00BC5CA4 /* UILabel+Extension.swift */,
+				FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -375,6 +436,7 @@
 			files = (
 				FF216E852BD189AE0043FB07 /* LaunchScreen.storyboard in Resources */,
 				FF216E822BD189AE0043FB07 /* Assets.xcassets in Resources */,
+				FF8E99872BD4214700BC5CA4 /* Alice-Regular.ttf in Resources */,
 				FF2DAD902BD3529C00E152EF /* cocktail_animation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,9 +458,12 @@
 				FF216EC82BD1936E0043FB07 /* Router.swift in Sources */,
 				FF216ECE2BD1944B0043FB07 /* WindowNavigationTransition.swift in Sources */,
 				FF2DAD7D2BD2BBE800E152EF /* GridCell.swift in Sources */,
+				FF2DAD9A2BD3EAD100E152EF /* CocktailsDetailViewController.swift in Sources */,
+				FF8E998C2BD42C3D00BC5CA4 /* UILabel+Extension.swift in Sources */,
 				FF216ED02BD194750043FB07 /* WindowTransition.swift in Sources */,
 				FF216E792BD189AC0043FB07 /* AppDelegate.swift in Sources */,
 				FF2DAD7A2BD2B13800E152EF /* ApiClient.swift in Sources */,
+				FF8E998A2BD4220F00BC5CA4 /* UIFont+Extension.swift in Sources */,
 				FF216EDC2BD197C10043FB07 /* HomeViewModel.swift in Sources */,
 				FF216EDF2BD198A10043FB07 /* IViewModeling.swift in Sources */,
 				FF2DAD752BD2AC3E00E152EF /* CocktailsList.swift in Sources */,
@@ -406,10 +471,13 @@
 				FF216EE12BD198EE0043FB07 /* DIConfigurable.swift in Sources */,
 				FF2DAD922BD3593E00E152EF /* MainLoaderView.swift in Sources */,
 				FF216EE52BD19ACA0043FB07 /* IViewModelOwner.swift in Sources */,
+				FF2DAD9C2BD3EAE000E152EF /* CocktailsDetailViewModel.swift in Sources */,
 				FF2DAD8A2BD3485300E152EF /* SearchBarView.swift in Sources */,
 				FF216ED22BD195360043FB07 /* AppDependencyManager.swift in Sources */,
+				FF2DAD9E2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift in Sources */,
 				FF216ED62BD196F80043FB07 /* HomeCoordinator.swift in Sources */,
 				FF216EE32BD19AAD0043FB07 /* IAutoSetup.swift in Sources */,
+				FF8E998E2BD436A100BC5CA4 /* UIImage+Extension.swift in Sources */,
 				FF2DAD872BD3418700E152EF /* AssetsImage.swift in Sources */,
 				FF216EEA2BD1BF3A0043FB07 /* PushTransition.swift in Sources */,
 				FF2DAD6F2BD2820600E152EF /* SegmentedControl.swift in Sources */,

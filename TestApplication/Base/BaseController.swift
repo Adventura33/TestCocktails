@@ -35,8 +35,6 @@ class BaseController<CoordinatorType: ICoordinator>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.appColor(.background)
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Cocktails"
         
         performSetupIfNeeded()
     }
@@ -83,11 +81,35 @@ class BaseController<CoordinatorType: ICoordinator>: UIViewController {
     }
     
     func toggleTheme() {
+        var titleColor: UIColor
         if #available(iOS 13.0, *) {
             let currentTraitCollection = self.traitCollection
             let userInterfaceStyle = currentTraitCollection.userInterfaceStyle
             let newStyle: UIUserInterfaceStyle = userInterfaceStyle == .dark ? .light : .dark
             self.overrideUserInterfaceStyle = newStyle
+            titleColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
+        } else {
+            titleColor = UIColor.appColor(.titleColor) ?? UIColor()
+        }
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.regular(fontSize: 30),
+                NSAttributedString.Key.foregroundColor: titleColor
+            ]
+    }
+    
+    func loadImageFromURL(urlString: String, completion: @escaping (UIImage?) -> Void) {
+        if let url = URL(string: urlString) {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data {
+                    let image = UIImage(data: data)
+                    completion(image)
+                } else {
+                    completion(nil)
+                }
+            }
+            task.resume()
+        } else {
+            completion(nil)
         }
     }
 }
