@@ -10,7 +10,7 @@ import Swinject
 import UIKit
 
 protocol HomeRoutes {
-    func openDetail(id: String)
+    func openDetail(with id: String)
 }
 
 class HomeRouter: Router<UIViewController>, HomeRoutes {
@@ -19,7 +19,7 @@ class HomeRouter: Router<UIViewController>, HomeRoutes {
         return AppDependencyManager.shared.resolver
     }
     
-    func openDetail(id: String) {
+    func openDetail(with id: String) {
         let coordinator = CocktailsDetailCoordinator(resolver: resolver, detailID: id)
         coordinator.start(from: self, transition: PushTransition())
     }

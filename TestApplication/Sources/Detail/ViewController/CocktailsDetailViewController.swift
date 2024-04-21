@@ -12,24 +12,21 @@ import RxCocoa
 import Swinject
 import SnapKit
 
-class CocktailsDetailViewController: BaseController<CocktailsDetailCoordinator>, IAutoSetup {
-    
-    //MARK: - Private properties
+final class CocktailsDetailViewController: BaseController<CocktailsDetailCoordinator>, IAutoSetup {
     
     let viewModel: CocktailsDetailViewModel
+    
+    //MARK: - Private properties
     private var isRetry = BehaviorRelay<Bool?>(value: false)
     
     //MARK: - UI Elements
     
-    private lazy var backButton: UIButton = {
-        $0.setImage(AssetsImage.Common.back.image, for: .normal)
-        $0.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
-        return $0
-    }(UIButton())
-    
     private let topView = UIView()
     private let bottomView = UIView()
     private let imageView = UIImageView()
+    private let categoryIcon = UIImageView()
+
+    private lazy var backButton = UIBarButtonItem(image: AssetsImage.Common.back.image, style: .plain, target: self, action: #selector(closeTapped))
     
     private let categoryView: UIView = {
         $0.layer.cornerRadius = 20
@@ -44,8 +41,6 @@ class CocktailsDetailViewController: BaseController<CocktailsDetailCoordinator>,
         $0.backgroundColor = UIColor.appColor(.lightDark)
         return $0
     }(UIView())
-    
-    private let categoryIcon = UIImageView()
     
     private let categoryLabel: UILabel = {
         $0.font = .regular(fontSize: 16)
@@ -140,9 +135,8 @@ extension CocktailsDetailViewController {
 
 extension CocktailsDetailViewController {
     private func setupViews() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        self.navigationController?.navigationBar.isHidden = true
-        [imageView, titleLabel, backButton].forEach {
+        self.navigationItem.leftBarButtonItem = backButton
+        [imageView, titleLabel].forEach {
             topView.addSubview($0)
         }
         
@@ -177,11 +171,6 @@ extension CocktailsDetailViewController {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
-        }
-        
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
-            make.left.equalToSuperview().offset(10)
         }
         
         categoryIcon.snp.makeConstraints { make in
@@ -232,33 +221,23 @@ extension CocktailsDetailViewController {
         titleLabel.text = item.strDrink
         instructionLabel.text = "Instruction"
         descriptionLabel.text = item.strInstructions
-        loadImageFromURL(urlString: item.strDrinkThumb ?? "") { image in
-            if let image = image {
-                DispatchQueue.main.async { [weak self] in
-                    self?.imageView.image = image
+        if let imageUrl = item.strDrinkThumb {
+            loadImageFromURL(urlString: imageUrl) { image in
+                if let image = image {
+                    DispatchQueue.main.async {
+                        self.imageView.image = image
+                    }
                 }
             }
         }
         
-        switch item.strCategory {
-        case "Shake":
-            categoryIcon.image = AssetsImage.CocktailsType.smoothieShake.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        case "Beer":
-            categoryIcon.image = AssetsImage.CocktailsType.beer.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        case "Shot":
-            categoryIcon.image = AssetsImage.CocktailsType.shot.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        case "Punch / Party Drink":
-            categoryIcon.image = AssetsImage.CocktailsType.drinkOnTheParty.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        case "Ordinary Drink":
-            categoryIcon.image = AssetsImage.CocktailsType.softDrink.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        case "Coffee / Tea":
-            categoryIcon.image = AssetsImage.CocktailsType.coffee.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        case "Homemade Liqueur":
-            categoryIcon.image = AssetsImage.CocktailsType.liquor.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        case "Other / Unknown":
-            categoryIcon.image = AssetsImage.CocktailsType.other.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
-        default:
-            categoryIcon.image = AssetsImage.CocktailsType.cocktail.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
+        if let category = item.strCategory {
+            switch DetailCategory(rawValue: category) {
+            case .some(let category):
+                categoryIcon.image = category.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
+            case .none:
+                categoryIcon.image = AssetsImage.CocktailsType.cocktail.image.tint(with: UIColor.appColor(.yellow) ?? UIColor())
+            }
         }
         
         typeView.snp.remakeConstraints { make in

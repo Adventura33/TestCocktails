@@ -14,9 +14,10 @@ import SnapKit
 
 class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
     
+    let viewModel: HomeViewModel
+    
     //MARK: - Private properties
     
-    let viewModel: HomeViewModel
     private var isAlcoholic = BehaviorRelay<Bool?>(value: false)
     private var drinksDetail = BehaviorRelay<String?>(value: nil)
     private var nonAlcoholicCocktailsList: [Drink] = []
@@ -61,10 +62,14 @@ class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
         setupViews()
         setupConstraints()
         setupBinding()
+        showAlert(completion: {})
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    deinit {
         UserDefaultsManager.clearLists()
     }
 }
