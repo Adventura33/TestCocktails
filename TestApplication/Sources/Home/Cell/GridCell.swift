@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class GridCell: UICollectionViewCell {
+final class GridCell: UICollectionViewCell {
     
     private let imageView = UIImageView()
     
@@ -61,9 +61,8 @@ class GridCell: UICollectionViewCell {
         titleLabel.text = title
         loadImageFromURL(urlString: image) { image in
             if let image = image {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    imageView.image = image
+                DispatchQueue.main.async {
+                    self.imageView.image = image
                 }
             }
         }

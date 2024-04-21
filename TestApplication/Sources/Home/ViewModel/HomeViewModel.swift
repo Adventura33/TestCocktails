@@ -28,8 +28,8 @@ class HomeViewModel {
     }
     
     func fetch() {
-        self.getNonAlcoholicCocktailList()
-        self.getAlcoholicCocktailList()
+        getNonAlcoholicCocktailList()
+        getAlcoholicCocktailList()
     }
 }
 
@@ -77,7 +77,7 @@ extension HomeViewModel {
     func subscribeDetail(_ trigger: Signal<String?>) -> Disposable {
         return trigger.emit(onNext: { [weak self] id in
             guard let id = id else { return }
-            self?.routes.openDetail(id: id)
+            self?.routes.openDetail(with: id)
         })
     }
     

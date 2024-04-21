@@ -59,6 +59,8 @@
 		FF8E998E2BD436A100BC5CA4 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */; };
 		FF8E99922BD4450C00BC5CA4 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99912BD4450C00BC5CA4 /* AlertViewController.swift */; };
 		FF8E99952BD4880D00BC5CA4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99942BD4880D00BC5CA4 /* UserDefaultsManager.swift */; };
+		FF8E99972BD5350200BC5CA4 /* DrinksDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99962BD5350200BC5CA4 /* DrinksDetailList.swift */; };
+		FF8E999A2BD535B700BC5CA4 /* DetailCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99992BD535B700BC5CA4 /* DetailCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,8 @@
 		FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		FF8E99912BD4450C00BC5CA4 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		FF8E99942BD4880D00BC5CA4 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		FF8E99962BD5350200BC5CA4 /* DrinksDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksDetailList.swift; sourceTree = "<group>"; };
+		FF8E99992BD535B700BC5CA4 /* DetailCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				FF2DAD742BD2AC3E00E152EF /* CocktailsList.swift */,
+				FF8E99962BD5350200BC5CA4 /* DrinksDetailList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 		FF2DAD962BD3EA8F00E152EF /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				FF8E99982BD535A800BC5CA4 /* Model */,
 				FF2DAD982BD3EA9E00E152EF /* ViewController */,
 				FF2DAD972BD3EA9800E152EF /* ViewModel */,
 				FF2DAD9D2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift */,
@@ -375,6 +381,14 @@
 				FF8E99942BD4880D00BC5CA4 /* UserDefaultsManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		FF8E99982BD535A800BC5CA4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF8E99992BD535B700BC5CA4 /* DetailCategory.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,6 +488,7 @@
 				FF216EC62BD193450043FB07 /* Coordinator.swift in Sources */,
 				FF216EC32BD193060043FB07 /* AppCoordinator.swift in Sources */,
 				FF216EEC2BD1BF530043FB07 /* Animator.swift in Sources */,
+				FF8E99972BD5350200BC5CA4 /* DrinksDetailList.swift in Sources */,
 				FF2DAD782BD2B01E00E152EF /* ApiRouter.swift in Sources */,
 				FF216ECA2BD1938E0043FB07 /* ITransition.swift in Sources */,
 				FF2DAD722BD28BD300E152EF /* AssetsColor.swift in Sources */,
@@ -495,6 +510,7 @@
 				FF216EE12BD198EE0043FB07 /* DIConfigurable.swift in Sources */,
 				FF2DAD922BD3593E00E152EF /* MainLoaderView.swift in Sources */,
 				FF216EE52BD19ACA0043FB07 /* IViewModelOwner.swift in Sources */,
+				FF8E999A2BD535B700BC5CA4 /* DetailCategory.swift in Sources */,
 				FF2DAD9C2BD3EAE000E152EF /* CocktailsDetailViewModel.swift in Sources */,
 				FF2DAD8A2BD3485300E152EF /* SearchBarView.swift in Sources */,
 				FF216ED22BD195360043FB07 /* AppDependencyManager.swift in Sources */,
