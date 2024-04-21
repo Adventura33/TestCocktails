@@ -16,7 +16,8 @@ class HomeViewModel {
     private let bag = DisposeBag()
     
     private let isAlcoholic = BehaviorRelay<Bool>(value: true)
-    private let cocktailsList = BehaviorRelay<[Drink]>(value: [])
+    private let alcoholicCocktailsList = BehaviorRelay<[Drink]>(value: [])
+    private let nonAlcoholicCocktailsList = BehaviorRelay<[Drink]>(value: [])
     private let isLoading = PublishRelay<Bool>()
     private let showAlert = PublishRelay<Bool>()
     
@@ -27,7 +28,8 @@ class HomeViewModel {
     }
     
     func fetch() {
-        self.getCocktailList(isAlcoholic: false)
+        self.getNonAlcoholicCocktailList()
+        self.getAlcoholicCocktailList()
     }
 }
 
@@ -45,7 +47,8 @@ extension HomeViewModel: IViewModeling {
     
     struct Output {
         let isLoading: Driver<Bool>
-        let cocktailsList: Driver<[Drink]>
+        let alcoholicCocktailsList: Driver<[Drink]>
+        let nonAlcoholicCocktailsList: Driver<[Drink]>
         let showAlert: Driver<Bool>
     }
     
@@ -59,11 +62,13 @@ extension HomeViewModel: IViewModeling {
         
         let isLoading = self.isLoading.asDriver(onErrorDriveWith: .empty())
         
-        let cocktailsList = self.cocktailsList.asDriver(onErrorDriveWith: .empty())
+        let alcoholicCocktailsList = self.alcoholicCocktailsList.asDriver(onErrorDriveWith: .empty())
+        
+        let nonAlcoholicCocktailsList = self.nonAlcoholicCocktailsList.asDriver(onErrorDriveWith: .empty())
         
         let showAlert = self.showAlert.asDriver(onErrorDriveWith: .empty())
         
-        outputHandler(.init(isLoading: isLoading, cocktailsList: cocktailsList, showAlert: showAlert))
+        outputHandler(.init(isLoading: isLoading, alcoholicCocktailsList: alcoholicCocktailsList, nonAlcoholicCocktailsList: nonAlcoholicCocktailsList, showAlert: showAlert))
     }
 }
 
@@ -79,18 +84,31 @@ extension HomeViewModel {
     func subscribeFilter(_ trigger: Signal<Bool?>) -> Disposable {
         return trigger.emit(onNext: { [weak self] filter in
             guard let filter = filter else { return }
-            self?.getCocktailList(isAlcoholic: filter)
+            filter == true ? self?.getAlcoholicCocktailList() : self?.getNonAlcoholicCocktailList()
         })
     }
     
-    func getCocktailList(isAlcoholic: Bool) {
+    func getAlcoholicCocktailList() {
         isLoading.accept(true)
-        getCocktailListApi(isAlcoholic: isAlcoholic)
+        getCocktailListApi(isAlcoholic: true)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] list in
-                self?.cocktailsList.accept(list.drinks)
+                self?.alcoholicCocktailsList.accept(list.drinks)
                 self?.isLoading.accept(false)
-                print(list)
+            }, onError: { [weak self] error in
+                self?.isLoading.accept(false)
+                self?.showAlert.accept(true)
+            })
+            .disposed(by: bag)
+    }
+    
+    func getNonAlcoholicCocktailList() {
+        isLoading.accept(true)
+        getCocktailListApi(isAlcoholic: false)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] list in
+                self?.nonAlcoholicCocktailsList.accept(list.drinks)
+                self?.isLoading.accept(false)
             }, onError: { [weak self] error in
                 self?.isLoading.accept(false)
                 self?.showAlert.accept(true)

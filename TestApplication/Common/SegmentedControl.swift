@@ -115,6 +115,14 @@ class SSSegmentedControl: UIView {
         setButtonCornerRadius()
         setBorderColor()
         setBorderWidth()
+        updateButtonEnabledState()
+    }
+    
+    private func updateButtonEnabledState() {
+        buttonsCollection.forEach { button in
+            button.isEnabled = !(button.tag == 0 && currentIndex == 0) &&
+                              !(button.tag == 1 && currentIndex == 1)
+        }
     }
     
     private func setCurrentIndexView() {
@@ -125,6 +133,7 @@ class SSSegmentedControl: UIView {
     }
     
     private func setCurrentIndex(animated: Bool = true) {
+        updateButtonEnabledState()
         stackView.subviews.enumerated().forEach { (index, view) in
             let button: UIButton? = view as? UIButton
             
