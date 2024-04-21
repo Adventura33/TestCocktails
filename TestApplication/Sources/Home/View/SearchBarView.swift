@@ -62,7 +62,7 @@ class SearchBarView: UIView {
         }
     }
     
-    @objc private func clearSearchText() {
+    @objc public func clearSearchText() {
         searchTextField.text = ""
         clearButton.isHidden = true
         searchTextField.resignFirstResponder()

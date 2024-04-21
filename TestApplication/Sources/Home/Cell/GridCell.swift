@@ -57,8 +57,31 @@ class GridCell: UICollectionViewCell {
         
     }
     
-    func configure(title: String, image: UIImage) {
+    func configure(title: String, image: String) {
         titleLabel.text = title
-        imageView.image = image
+        loadImageFromURL(urlString: image) { image in
+            if let image = image {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    imageView.image = image
+                }
+            }
+        }
+    }
+    
+    func loadImageFromURL(urlString: String, completion: @escaping (UIImage?) -> Void) {
+        if let url = URL(string: urlString) {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data {
+                    let image = UIImage(data: data)
+                    completion(image)
+                } else {
+                    completion(nil)
+                }
+            }
+            task.resume()
+        } else {
+            completion(nil)
+        }
     }
 }

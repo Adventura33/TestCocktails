@@ -19,7 +19,9 @@ class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
     let viewModel: HomeViewModel
     private var isAlcoholic = BehaviorRelay<Bool?>(value: false)
     private var drinksDetail = BehaviorRelay<String?>(value: nil)
-    private var cocktailsList: [Drink] = []
+    private var nonAlcoholicCocktailsList: [Drink] = []
+    private var alcoholicCocktailsList: [Drink] = []
+    private var allList: [Drink] = []
     private var segmentIndex: Int = 0
     
     //MARK: - UI Elements
@@ -60,6 +62,11 @@ class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
         setupConstraints()
         setupBinding()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UserDefaultsManager.clearLists()
+    }
 }
 
 // MARK: - IViewModelOwner
@@ -74,8 +81,17 @@ extension HomeViewController: IViewModelOwner {
     }
     
     func subscribeToOutput(_ output: HomeViewModel.Output) {
-        output.cocktailsList.drive { [weak self] list in
-            self?.cocktailsList = list
+        output.nonAlcoholicCocktailsList.drive { [weak self] list in
+            UserDefaultsManager.saveNonAlcoholicList(list)
+            self?.allList.append(contentsOf: list)
+            self?.nonAlcoholicCocktailsList = list
+            self?.collectionView.reloadData()
+        }.disposed(by: bag)
+        
+        output.alcoholicCocktailsList.drive { [weak self] list in
+            UserDefaultsManager.saveAlcoholicList(list)
+            self?.allList.append(contentsOf: list)
+            self?.alcoholicCocktailsList = list
             self?.collectionView.reloadData()
         }.disposed(by: bag)
         
@@ -94,24 +110,17 @@ extension HomeViewController: IViewModelOwner {
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.cocktailsList.count 
+        return segmentIndex == 0 ? self.nonAlcoholicCocktailsList.count : self.alcoholicCocktailsList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! GridCell
-        loadImageFromURL(urlString: self.cocktailsList[indexPath.row].strDrinkThumb) { image in
-            if let image = image {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    cell.configure(title: self.cocktailsList[indexPath.row].strDrink, image: image)
-                }
-            }
-        }
+        segmentIndex == 0 ? cell.configure(title: self.nonAlcoholicCocktailsList[indexPath.row].strDrink, image: self.nonAlcoholicCocktailsList[indexPath.row].strDrinkThumb) : cell.configure(title: self.alcoholicCocktailsList[indexPath.row].strDrink, image: self.alcoholicCocktailsList[indexPath.row].strDrinkThumb)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        drinksDetail.accept(self.cocktailsList[indexPath.row].idDrink)
+        segmentIndex == 0 ?  drinksDetail.accept(self.nonAlcoholicCocktailsList[indexPath.row].idDrink) : drinksDetail.accept(self.alcoholicCocktailsList[indexPath.row].idDrink)
     }
 }
 
@@ -119,9 +128,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension HomeViewController {
     @objc func refreshData() {
-        cocktailsList.shuffle()
+        segmentIndex == 0 ? nonAlcoholicCocktailsList.shuffle() : alcoholicCocktailsList.shuffle()
         collectionView.reloadData()
-        
         refreshControl.endRefreshing()
     }
 }
@@ -167,12 +175,32 @@ extension HomeViewController {
     
     func setupBinding() {
         searchBar.didTextFieldChange = { [weak self] textField in
-            print(textField.text)
+            guard let self = self, let text = textField.text else { return }
+            if text.isEmpty {
+                let list = self.segmentIndex == 0 ? UserDefaultsManager.loadNonAlcoholicList() : UserDefaultsManager.loadAlcoholicList()
+                if self.segmentIndex == 0 {
+                    self.nonAlcoholicCocktailsList = list
+                } else {
+                    self.alcoholicCocktailsList = list
+                }
+            } else {
+                let savedCocktails = self.segmentIndex == 0 ? UserDefaultsManager.loadNonAlcoholicList() : UserDefaultsManager.loadAlcoholicList()
+                let filteredCocktails = savedCocktails.filter { $0.strDrink.lowercased().contains(text.lowercased()) }
+                if self.segmentIndex == 0 {
+                    self.nonAlcoholicCocktailsList = filteredCocktails
+                } else {
+                    self.alcoholicCocktailsList = filteredCocktails
+                }
+            }
+            self.collectionView.reloadData()
         }
         
         segmentedControl.didTapSegment = { [weak self] index in
+            self?.nonAlcoholicCocktailsList = UserDefaultsManager.loadNonAlcoholicList()
+            self?.alcoholicCocktailsList = UserDefaultsManager.loadAlcoholicList()
+            self?.searchBar.clearSearchText()
             self?.segmentIndex = index
-            index == 0 ? self?.isAlcoholic.accept(false) : self?.isAlcoholic.accept(true)
+            self?.collectionView.reloadData()
         }
     }
 }
