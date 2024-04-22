@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class AlertViewController: UIViewController {
+class AlertViewController: BaseController {
     
     var didTapRetry: (() -> Void)?
     
@@ -56,10 +56,11 @@ public class AlertViewController: UIViewController {
         return stackView
     }()
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidChange), name: Notification.Name(rawValue: "themeDidChange"), object: nil)
     }
     
     private func setupViews() {
@@ -112,5 +113,9 @@ public class AlertViewController: UIViewController {
             self.dismiss(animated: true)
             self.didTapRetry?()
         }
+    }
+    
+    @objc func themeDidChange() {
+        updateTheme()
     }
 }

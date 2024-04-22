@@ -33,6 +33,5 @@ class HomeCoordinator : Coordinator<HomeRouter>{
         let vc = HomeViewController(container: .init(viewModel: vm))
         router.viewController = vc
         super.init(resolver: resolver, router: router, view: vc)
-        vc.coordinator = self
     }
 }

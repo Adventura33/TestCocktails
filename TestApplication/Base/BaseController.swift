@@ -10,14 +10,12 @@ import UIKit
 import RxSwift
 import CoreMotion
 
-class BaseController<CoordinatorType: ICoordinator>: UIViewController {
+class BaseController: UIViewController {
 
     let bag = DisposeBag()
     let motionManager = CMMotionManager()
     
     var loaderView: MainLoaderView?
-
-    var coordinator: CoordinatorType?
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -34,8 +32,13 @@ class BaseController<CoordinatorType: ICoordinator>: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.appColor(.background)
         performSetupIfNeeded()
+        updateTheme()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateTheme()
     }
     
     override var canBecomeFirstResponder: Bool {
@@ -73,27 +76,20 @@ class BaseController<CoordinatorType: ICoordinator>: UIViewController {
         setuper.performAutoSetup()
     }
     
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            toggleTheme()
-        }
-    }
-    
-    func toggleTheme() {
+    func updateTheme() {
         var titleColor: UIColor
-        if #available(iOS 13.0, *) {
-            let currentTraitCollection = self.traitCollection
-            let userInterfaceStyle = currentTraitCollection.userInterfaceStyle
-            let newStyle: UIUserInterfaceStyle = userInterfaceStyle == .dark ? .light : .dark
-            self.overrideUserInterfaceStyle = newStyle
-            titleColor = traitCollection.userInterfaceStyle == .dark ? .white : .black
-        } else {
-            titleColor = UIColor.appColor(.titleColor) ?? UIColor()
-        }
+        overrideUserInterfaceStyle = ThemeManager.shared.currentTheme
+        titleColor = ThemeManager.shared.currentTheme == .dark ? .white : .black
         navigationController?.navigationBar.largeTitleTextAttributes = [
             NSAttributedString.Key.font: UIFont.regular(fontSize: 30),
-                NSAttributedString.Key.foregroundColor: titleColor
-            ]
+            NSAttributedString.Key.foregroundColor: titleColor
+        ]
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            ThemeManager.shared.changeTheme()
+        }
     }
     
     func loadImageFromURL(urlString: String, completion: @escaping (UIImage?) -> Void) {

@@ -12,7 +12,7 @@ import RxCocoa
 import Swinject
 import SnapKit
 
-final class CocktailsDetailViewController: BaseController<CocktailsDetailCoordinator>, IAutoSetup {
+final class CocktailsDetailViewController: BaseController, IAutoSetup {
     
     let viewModel: CocktailsDetailViewModel
     
@@ -94,6 +94,7 @@ final class CocktailsDetailViewController: BaseController<CocktailsDetailCoordin
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidChange), name: Notification.Name(rawValue: "themeDidChange"), object: nil)
     }
 }
 
@@ -128,6 +129,11 @@ extension CocktailsDetailViewController: IViewModelOwner {
 // MARK: - Methods
 
 extension CocktailsDetailViewController {
+    
+    @objc func themeDidChange() {
+        updateTheme()
+    }
+    
     @objc func closeTapped() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -135,7 +141,8 @@ extension CocktailsDetailViewController {
 
 extension CocktailsDetailViewController {
     private func setupViews() {
-        self.navigationItem.leftBarButtonItem = backButton
+        view.backgroundColor = UIColor.appColor(.background)
+        navigationItem.leftBarButtonItem = backButton
         [imageView, titleLabel].forEach {
             topView.addSubview($0)
         }

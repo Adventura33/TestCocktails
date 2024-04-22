@@ -12,7 +12,7 @@ import RxCocoa
 import Swinject
 import SnapKit
 
-class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
+class HomeViewController: BaseController, IAutoSetup {
     
     let viewModel: HomeViewModel
     
@@ -62,11 +62,7 @@ class HomeViewController: BaseController<HomeCoordinator>, IAutoSetup {
         setupViews()
         setupConstraints()
         setupBinding()
-        showAlert(completion: {})
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidChange), name: Notification.Name(rawValue: "themeDidChange"), object: nil)
     }
     
     deinit {
@@ -132,6 +128,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 // MARK: - Actions
 
 extension HomeViewController {
+    
+    @objc func themeDidChange() {
+        updateTheme()
+    }
+    
     @objc func refreshData() {
         segmentIndex == 0 ? nonAlcoholicCocktailsList.shuffle() : alcoholicCocktailsList.shuffle()
         collectionView.reloadData()
@@ -141,7 +142,8 @@ extension HomeViewController {
 
 extension HomeViewController {
     private func setupViews() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = UIColor.appColor(.background)
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Cocktails"
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.regular(fontSize: 30), NSAttributedString.Key.foregroundColor: UIColor.appColor(.titleColor)]
         
