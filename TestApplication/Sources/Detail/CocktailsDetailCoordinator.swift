@@ -24,9 +24,6 @@ class CocktailsDetailCoordinator: Coordinator<CocktailsDetailRouter> {
         let vm = CocktailsDetailViewModel(container: .init(routes: router, detailID: detailID))
         let vc = CocktailsDetailViewController(container: .init(viewModel: vm))
         router.viewController = vc
-
         super.init(resolver: resolver, router: router, view: vc)
-
-        vc.coordinator = self
     }
 }

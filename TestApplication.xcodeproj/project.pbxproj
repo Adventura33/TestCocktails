@@ -61,6 +61,7 @@
 		FF8E99952BD4880D00BC5CA4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99942BD4880D00BC5CA4 /* UserDefaultsManager.swift */; };
 		FF8E99972BD5350200BC5CA4 /* DrinksDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99962BD5350200BC5CA4 /* DrinksDetailList.swift */; };
 		FF8E999A2BD535B700BC5CA4 /* DetailCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99992BD535B700BC5CA4 /* DetailCategory.swift */; };
+		FF8E999E2BD5B69500BC5CA4 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E999D2BD5B69500BC5CA4 /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		FF8E99942BD4880D00BC5CA4 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		FF8E99962BD5350200BC5CA4 /* DrinksDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksDetailList.swift; sourceTree = "<group>"; };
 		FF8E99992BD535B700BC5CA4 /* DetailCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategory.swift; sourceTree = "<group>"; };
+		FF8E999D2BD5B69500BC5CA4 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				FF8E99902BD444FD00BC5CA4 /* Alert */,
 				FF2DAD6E2BD2820600E152EF /* SegmentedControl.swift */,
 				FF2DAD912BD3593E00E152EF /* MainLoaderView.swift */,
+				FF8E999D2BD5B69500BC5CA4 /* ThemeManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				FF216ED22BD195360043FB07 /* AppDependencyManager.swift in Sources */,
 				FF2DAD9E2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift in Sources */,
 				FF216ED62BD196F80043FB07 /* HomeCoordinator.swift in Sources */,
+				FF8E999E2BD5B69500BC5CA4 /* ThemeManager.swift in Sources */,
 				FF216EE32BD19AAD0043FB07 /* IAutoSetup.swift in Sources */,
 				FF8E998E2BD436A100BC5CA4 /* UIImage+Extension.swift in Sources */,
 				FF2DAD872BD3418700E152EF /* AssetsImage.swift in Sources */,
