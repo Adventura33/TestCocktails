@@ -21,8 +21,6 @@
 		FF216EBA2BD18B7F0043FB07 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EB92BD18B7F0043FB07 /* Swinject-Dynamic */; };
 		FF216EBD2BD18B8C0043FB07 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EBC2BD18B8C0043FB07 /* Alamofire */; };
 		FF216EBF2BD18B8C0043FB07 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = FF216EBE2BD18B8C0043FB07 /* AlamofireDynamic */; };
-		FF216EC32BD193060043FB07 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF216EC22BD193060043FB07 /* AppCoordinator.swift */; };
-		FF216EC62BD193450043FB07 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF216EC52BD193450043FB07 /* Coordinator.swift */; };
 		FF216EC82BD1936E0043FB07 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF216EC72BD1936E0043FB07 /* Router.swift */; };
 		FF216ECA2BD1938E0043FB07 /* ITransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF216EC92BD1938E0043FB07 /* ITransition.swift */; };
 		FF216ECC2BD193B50043FB07 /* Closable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF216ECB2BD193B50043FB07 /* Closable.swift */; };
@@ -48,12 +46,10 @@
 		FF2DAD872BD3418700E152EF /* AssetsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD862BD3418700E152EF /* AssetsImage.swift */; };
 		FF2DAD8A2BD3485300E152EF /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD892BD3485300E152EF /* SearchBarView.swift */; };
 		FF2DAD8D2BD3523600E152EF /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FF2DAD8C2BD3523600E152EF /* Lottie */; };
-		FF2DAD902BD3529C00E152EF /* cocktail_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = FF2DAD8F2BD3529C00E152EF /* cocktail_animation.json */; };
 		FF2DAD922BD3593E00E152EF /* MainLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD912BD3593E00E152EF /* MainLoaderView.swift */; };
 		FF2DAD9A2BD3EAD100E152EF /* CocktailsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD992BD3EAD100E152EF /* CocktailsDetailViewController.swift */; };
 		FF2DAD9C2BD3EAE000E152EF /* CocktailsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD9B2BD3EAE000E152EF /* CocktailsDetailViewModel.swift */; };
 		FF2DAD9E2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DAD9D2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift */; };
-		FF8E99872BD4214700BC5CA4 /* Alice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF8E99862BD4214700BC5CA4 /* Alice-Regular.ttf */; };
 		FF8E998A2BD4220F00BC5CA4 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99892BD4220F00BC5CA4 /* UIFont+Extension.swift */; };
 		FF8E998C2BD42C3D00BC5CA4 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E998B2BD42C3D00BC5CA4 /* UILabel+Extension.swift */; };
 		FF8E998E2BD436A100BC5CA4 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */; };
@@ -62,6 +58,9 @@
 		FF8E99972BD5350200BC5CA4 /* DrinksDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99962BD5350200BC5CA4 /* DrinksDetailList.swift */; };
 		FF8E999A2BD535B700BC5CA4 /* DetailCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99992BD535B700BC5CA4 /* DetailCategory.swift */; };
 		FF8E999E2BD5B69500BC5CA4 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E999D2BD5B69500BC5CA4 /* ThemeManager.swift */; };
+		FF8E99A02BD62D4200BC5CA4 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E999F2BD62D4200BC5CA4 /* AppCoordinator.swift */; };
+		FF8E99A22BD62D9900BC5CA4 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E99A12BD62D9900BC5CA4 /* Coordinator.swift */; };
+		FF8E99AF2BD62FCD00BC5CA4 /* Alice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF8E99AB2BD62EEE00BC5CA4 /* Alice-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,8 +69,6 @@
 		FF216E812BD189AE0043FB07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF216E842BD189AE0043FB07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF216E862BD189AE0043FB07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = TestApplication/Resourses/Info.plist; sourceTree = SOURCE_ROOT; };
-		FF216EC22BD193060043FB07 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppCoordinator.swift; path = ../../../Desktop/AppCoordinator.swift; sourceTree = "<group>"; };
-		FF216EC52BD193450043FB07 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coordinator.swift; path = ../../../Desktop/Coordinator.swift; sourceTree = "<group>"; };
 		FF216EC72BD1936E0043FB07 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FF216EC92BD1938E0043FB07 /* ITransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITransition.swift; sourceTree = "<group>"; };
 		FF216ECB2BD193B50043FB07 /* Closable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closable.swift; sourceTree = "<group>"; };
@@ -96,12 +93,10 @@
 		FF2DAD7C2BD2BBE800E152EF /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 		FF2DAD862BD3418700E152EF /* AssetsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsImage.swift; sourceTree = "<group>"; };
 		FF2DAD892BD3485300E152EF /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
-		FF2DAD8F2BD3529C00E152EF /* cocktail_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = cocktail_animation.json; path = ../../../../Downloads/cocktail_animation.json; sourceTree = "<group>"; };
 		FF2DAD912BD3593E00E152EF /* MainLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoaderView.swift; sourceTree = "<group>"; };
 		FF2DAD992BD3EAD100E152EF /* CocktailsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsDetailViewController.swift; sourceTree = "<group>"; };
 		FF2DAD9B2BD3EAE000E152EF /* CocktailsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsDetailViewModel.swift; sourceTree = "<group>"; };
 		FF2DAD9D2BD3EF0400E152EF /* CocktailsDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsDetailCoordinator.swift; sourceTree = "<group>"; };
-		FF8E99862BD4214700BC5CA4 /* Alice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Alice-Regular.ttf"; path = "../../../Downloads/Alice/Alice-Regular.ttf"; sourceTree = "<group>"; };
 		FF8E99892BD4220F00BC5CA4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		FF8E998B2BD42C3D00BC5CA4 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FF8E998D2BD436A100BC5CA4 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -110,6 +105,10 @@
 		FF8E99962BD5350200BC5CA4 /* DrinksDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksDetailList.swift; sourceTree = "<group>"; };
 		FF8E99992BD535B700BC5CA4 /* DetailCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategory.swift; sourceTree = "<group>"; };
 		FF8E999D2BD5B69500BC5CA4 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		FF8E999F2BD62D4200BC5CA4 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		FF8E99A12BD62D9900BC5CA4 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		FF8E99AB2BD62EEE00BC5CA4 /* Alice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alice-Regular.ttf"; sourceTree = "<group>"; };
+		FF8E99AE2BD62F1F00BC5CA4 /* cocktail_animation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cocktail_animation.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				FF216E782BD189AC0043FB07 /* AppDelegate.swift */,
-				FF216EC22BD193060043FB07 /* AppCoordinator.swift */,
 				FF216ED12BD195360043FB07 /* AppDependencyManager.swift */,
+				FF8E999F2BD62D4200BC5CA4 /* AppCoordinator.swift */,
 			);
 			path = Applications;
 			sourceTree = "<group>";
@@ -193,13 +192,13 @@
 		FF216EC42BD193340043FB07 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
-				FF216EC52BD193450043FB07 /* Coordinator.swift */,
 				FF216EC72BD1936E0043FB07 /* Router.swift */,
 				FF216EC92BD1938E0043FB07 /* ITransition.swift */,
 				FF216ECB2BD193B50043FB07 /* Closable.swift */,
 				FF216ECD2BD1944B0043FB07 /* WindowNavigationTransition.swift */,
 				FF216ECF2BD194750043FB07 /* WindowTransition.swift */,
 				FF216EE92BD1BF3A0043FB07 /* PushTransition.swift */,
+				FF8E99A12BD62D9900BC5CA4 /* Coordinator.swift */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -320,7 +319,7 @@
 		FF2DAD8E2BD3529100E152EF /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				FF2DAD8F2BD3529C00E152EF /* cocktail_animation.json */,
+				FF8E99AE2BD62F1F00BC5CA4 /* cocktail_animation.json */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -355,7 +354,7 @@
 		FF8E99852BD4212F00BC5CA4 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				FF8E99862BD4214700BC5CA4 /* Alice-Regular.ttf */,
+				FF8E99AB2BD62EEE00BC5CA4 /* Alice-Regular.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -475,8 +474,7 @@
 			files = (
 				FF216E852BD189AE0043FB07 /* LaunchScreen.storyboard in Resources */,
 				FF216E822BD189AE0043FB07 /* Assets.xcassets in Resources */,
-				FF8E99872BD4214700BC5CA4 /* Alice-Regular.ttf in Resources */,
-				FF2DAD902BD3529C00E152EF /* cocktail_animation.json in Resources */,
+				FF8E99AF2BD62FCD00BC5CA4 /* Alice-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,9 +486,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF216ECC2BD193B50043FB07 /* Closable.swift in Sources */,
-				FF216EC62BD193450043FB07 /* Coordinator.swift in Sources */,
-				FF216EC32BD193060043FB07 /* AppCoordinator.swift in Sources */,
 				FF216EEC2BD1BF530043FB07 /* Animator.swift in Sources */,
+				FF8E99A22BD62D9900BC5CA4 /* Coordinator.swift in Sources */,
 				FF8E99972BD5350200BC5CA4 /* DrinksDetailList.swift in Sources */,
 				FF2DAD782BD2B01E00E152EF /* ApiRouter.swift in Sources */,
 				FF216ECA2BD1938E0043FB07 /* ITransition.swift in Sources */,
@@ -503,6 +500,7 @@
 				FF8E998C2BD42C3D00BC5CA4 /* UILabel+Extension.swift in Sources */,
 				FF216ED02BD194750043FB07 /* WindowTransition.swift in Sources */,
 				FF8E99952BD4880D00BC5CA4 /* UserDefaultsManager.swift in Sources */,
+				FF8E99A02BD62D4200BC5CA4 /* AppCoordinator.swift in Sources */,
 				FF216E792BD189AC0043FB07 /* AppDelegate.swift in Sources */,
 				FF2DAD7A2BD2B13800E152EF /* ApiClient.swift in Sources */,
 				FF8E998A2BD4220F00BC5CA4 /* UIFont+Extension.swift in Sources */,
