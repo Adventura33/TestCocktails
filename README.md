@@ -26,3 +26,6 @@ Application that helps the user find the cocktail he is interested in.
 7) Local Data Caching - 4 hours:
    - Implement simple caching for the list of cocktails.
    - Filter cached data when searching for cocktails.
+
+The project was completed on time as stated, there were minor differences. With the exception of the implementation of the dark and light themes, there were minor logical errors, the task was estimated at an hour but had to be spent about 3-4 hours.
+The Project is ready for test!
